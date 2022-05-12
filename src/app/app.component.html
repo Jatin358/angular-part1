@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Keep</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+<div class="text-center">
+  <form [formGroup]="keepNoteForm" (ngSubmit)="formSubmit()" class="example-form mt-4">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+
+      <mat-expansion-panel-header >
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>title</mat-label>
+          <input matInput placeholder="Ex. Read Angular" formControlName="title" autocomplete="off"
+          (keydown)="$event.stopPropagation()">
+        </mat-form-field>
+      </mat-expansion-panel-header>
+      <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>text</mat-label>
+          <textarea matInput placeholder="Ex. Shall do at 6 pm..." formControlName="text"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="text-end">
+        <button class="btn btn-primary">Done</button>
+      </div>
+
+    </mat-expansion-panel>
+  </form>
+</div>
+
+<div class="column">
+  <div class="col card-container" *ngFor="let noteData of notesData">
+    <mat-card>
+      <mat-card-title>{{noteData.title}}</mat-card-title>
+      <mat-card-content>
+        <p>
+          {{noteData.text}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
